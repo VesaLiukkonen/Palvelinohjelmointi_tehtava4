@@ -19,8 +19,8 @@ public class Book {
     private double bookYear;
     private double price;
     
-    @ManyToOne
-    @JoinColumn(name = "categoryId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "categoryid")
     private Category category;
 
     public Book() {}
@@ -93,7 +93,11 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + "title=" + title + ", author=" + author + ", year=" + bookYear + ", isbn=" + isbn + ", price=" + price
-				+ "]";
+		if (this.category != null)
+			return "Book [id=" + id + "title=" + title + ", author=" + author + ", year=" + bookYear + ", isbn=" + isbn + ", price=" + price
+			+ " category =" + this.getCategory() +  "]";
+		else
+			return "Book [id=" + id + "title=" + title + ", author=" + author + ", year=" + bookYear + ", isbn=" + isbn + ", price=" + price
+			+ "]";
 	}
 }

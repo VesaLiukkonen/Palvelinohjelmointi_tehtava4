@@ -4,19 +4,21 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Category {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	public Long categoryid;
+	private Long categoryid;
 	private String name;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
 	private List<Book> books;
 	
@@ -27,7 +29,7 @@ public class Category {
 		this.name = name;
 	}
 	
-	public Long getCatgeroyid() {
+	public Long getCategoryid() {
 		return categoryid;
 	}
 	

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.Bookstore.Domain.Book;
-import com.example.Bookstore.Domain.Category;
 import com.example.Bookstore.Domain.BookRepository;
 import com.example.Bookstore.Domain.CategoryRepository;
 
@@ -24,7 +23,12 @@ import com.example.Bookstore.Domain.CategoryRepository;
 	private BookRepository brepository;
 	
 	@Autowired
-	private CategoryRepository crepository; 
+	private CategoryRepository crepository;
+	
+	@RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }
 
 	@RequestMapping(value= {"/", "booklist"})
     public String booklist(Model model) {	
